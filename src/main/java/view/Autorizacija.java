@@ -4,25 +4,35 @@
  */
 package view;
 
+import controller.ObradaOperater;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
+import javax.swing.JOptionPane;
+import model.Operater;
+import util.EdunovaUtil;
 
 /**
  *
  * @author patri
  */
 public class Autorizacija extends javax.swing.JFrame {
+    private ObradaOperater obradaOperater;
     /**
      * Creates new form Autorizacija
      */
     public Autorizacija() {
-        initComponents();
-    
+       initComponents();
+       postavke();
     }
     
-    
+    private void postavke(){
+        obradaOperater = new ObradaOperater();
+        txtEmail.setText("nesto@gmail.com");
+        txtLozinka.setText("12345");
+        setTitle(EdunovaUtil.getNaslov("Autorizacija"));
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -169,6 +179,17 @@ public class Autorizacija extends javax.swing.JFrame {
             txtEmail.requestFocus();
             return;
         }
+    
+    
+    Operater operater = obradaOperater.autoriziraj(txtEmail.getText(), new String(txtLozinka.getPassword()));
+     if(operater == null){
+            JOptionPane.showMessageDialog(getRootPane(), "Neispravni email ili lozinka");
+            return;
+}
+    EdunovaUtil.operater=operater;
+    
+    new Izbornik().setVisible(true);
+    dispose();
     }
     
     /**

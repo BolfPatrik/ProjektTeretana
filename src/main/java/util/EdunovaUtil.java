@@ -17,6 +17,18 @@ import us.codecraft.xsoup.Xsoup;
  * @author patri
  */
 public class EdunovaUtil {
+    
+    public static Operater operater;
+    public static final String NAZIV_APP = "Teretana app";
+    
+    public static String getNaslov(String Naslov){
+        if(EdunovaUtil.operater==null){
+            return EdunovaUtil.NAZIV_APP + " " + Naslov;
+        }
+        return EdunovaUtil.NAZIV_APP + " " + Naslov + " " + EdunovaUtil.operater.getIme() + " " + 
+                EdunovaUtil.operater.getPrezime() + " - " + EdunovaUtil.operater.getUloga();
+    }
+    
     public static String generirajOib(){
         try {
             URL url = new URL("http://oib.itcentrala.com/oib-generator/");

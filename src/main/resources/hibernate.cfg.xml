@@ -36,6 +36,7 @@
         <mapping class="model.Polaznik" />
         <mapping class="model.Trener" />
         <mapping class="model.Trening" />
+        <mapping class="model.Operater" />
         
     </session-factory>
 </hibernate-configuration>
