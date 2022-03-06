@@ -9,16 +9,31 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import model.Operater;
 import org.hibernate.Session;
 import model.Polaznik;
 import model.Trener;
 import model.Trening;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
  * @author patri
  */
 public class PocetniInsert {
+    
+    public static void unosOperatera(){
+        Session session = HibernateUtil.getSession();
+        session.beginTransaction();
+        
+        Operater o = new Operater();
+        o.setIme("Stanko");
+        o.setPrezime("Zec");
+        o.setEmail("nesto@gmail.com");
+        o.setLozinka(BCrypt.hashpw("12345", BCrypt.gensalt()));
+        session.save(o);
+        session.getTransaction().commit();
+    }
     
     public static void izvedi(){
         Session session = HibernateUtil.getSession();

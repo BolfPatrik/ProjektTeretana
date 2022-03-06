@@ -6,6 +6,7 @@ package edunova;
 
 import org.hibernate.Session;
 import util.HibernateUtil;
+import util.PocetniInsert;
 import view.SplashScreen;
 
 /**
@@ -16,11 +17,10 @@ public class Start {
     private Session session;
     
     public Start(){
-         this.session = HibernateUtil.getSession();
     }
     
-    public static void main(String[] args) {
-      new Start();
+    public static void main(String[] args) {    
       new SplashScreen().setVisible(true);
+      PocetniInsert.unosOperatera();
     }
 }

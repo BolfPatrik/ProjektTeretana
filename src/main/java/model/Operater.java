@@ -11,7 +11,7 @@ import javax.persistence.Column;
  * @author patri
  */
 public class Operater extends Entitet{
-     @Column(columnDefinition = "varchar(50) NOT NULL")
+    @Column(columnDefinition = "varchar(50) NOT NULL")
     private String ime;
     @Column(columnDefinition = "varchar(50) NOT NULL")
     private String prezime;
@@ -19,7 +19,9 @@ public class Operater extends Entitet{
     private String oib;
     @Column(columnDefinition = "varchar(7)")
     private String brojkartice;
-    
+    @Column(columnDefinition = "varchar(50) NOT NULL")
+    private String email;
+    @Column(columnDefinition = "varchar(30) NOT NULL")
     private String lozinka;
     private String uloga;
 
@@ -55,6 +57,14 @@ public class Operater extends Entitet{
         this.brojkartice = brojkartice;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
     public String getLozinka() {
         return lozinka;
     }

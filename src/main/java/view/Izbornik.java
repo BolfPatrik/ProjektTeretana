@@ -4,18 +4,43 @@
  */
 package view;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import util.EdunovaUtil;
+
 /**
  *
  * @author patri
  */
 public class Izbornik extends javax.swing.JFrame {
-
+private SimpleDateFormat df;
     /**
      * Creates new form Izbornik
      */
+  
     public Izbornik() {
         initComponents();
+        postavke();
     }
+    
+   private void postavke(){
+       setTitle(EdunovaUtil.getNaslov("Izbornik"));
+       File.setText(EdunovaUtil.NAZIV_APP);
+       df = new SimpleDateFormat("dd MMMM. yyy. HH:mm:ss");
+       Vrijeme v = new Vrijeme();
+       v.start();
+   }
+   
+   private class Vrijeme extends Thread{
+    public void run(){
+        lblVrijeme.setText(df.format(new Date()));
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+        }
+        run();
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,21 +51,79 @@ public class Izbornik extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        jToolBar1 = new javax.swing.JToolBar();
+        lblVrijeme = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        File = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+
+        jMenu3.setText("File");
+        jMenuBar2.add(jMenu3);
+
+        jMenu4.setText("Edit");
+        jMenuBar2.add(jMenu4);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jToolBar1.setRollover(true);
+
+        lblVrijeme.setText("jLabel1");
+        jToolBar1.add(lblVrijeme);
+
+        File.setText("File");
+
+        jMenuItem1.setText("Izlaz");
+        File.add(jMenuItem1);
+
+        jMenuBar1.add(File);
+
+        jMenu2.setText("Programi");
+
+        jMenuItem2.setText("Polaznici");
+        jMenu2.add(jMenuItem2);
+
+        jMenuItem3.setText("Treneri");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem3);
+
+        jMenuItem4.setText("Treninzi");
+        jMenu2.add(jMenuItem4);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 255, Short.MAX_VALUE)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +161,17 @@ public class Izbornik extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu File;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JLabel lblVrijeme;
     // End of variables declaration//GEN-END:variables
 }

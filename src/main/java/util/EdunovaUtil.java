@@ -21,11 +21,11 @@ public class EdunovaUtil {
     public static Operater operater;
     public static final String NAZIV_APP = "Teretana app";
     
-    public static String getNaslov(String Naslov){
+    public static String getNaslov(String naslov){
         if(EdunovaUtil.operater==null){
-            return EdunovaUtil.NAZIV_APP + " " + Naslov;
+            return EdunovaUtil.NAZIV_APP + " " + naslov;
         }
-        return EdunovaUtil.NAZIV_APP + " " + Naslov + " " + EdunovaUtil.operater.getIme() + " " + 
+        return EdunovaUtil.NAZIV_APP + " " + naslov + " " + EdunovaUtil.operater.getIme() + " " + 
                 EdunovaUtil.operater.getPrezime() + " - " + EdunovaUtil.operater.getUloga();
     }
     
