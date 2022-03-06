@@ -37,7 +37,7 @@ public class ObradaOperater extends Obrada<Operater>{
    public Operater autoriziraj(String email, String lozinka){
        Operater operater = null;
        try {
-           operater = (Operater)session.createQuery("from operater where email =: email")
+           operater = (Operater)session.createQuery("from Operater where email =: email")
                    .setParameter("email", email).getSingleResult();
        } catch (NoResultException e) {
            return null;
