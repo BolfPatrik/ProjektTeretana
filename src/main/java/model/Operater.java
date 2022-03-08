@@ -5,11 +5,13 @@
 package model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 
 /**
  *
  * @author patri
  */
+@Entity
 public class Operater extends Entitet{
     @Column(columnDefinition = "varchar(50) NOT NULL")
     private String ime;

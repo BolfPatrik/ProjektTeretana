@@ -39,6 +39,7 @@ public class PocetniInsert {
         Session session = HibernateUtil.getSession();
         session.beginTransaction();
         Faker faker = new Faker();
+        
         List<Polaznik> polaznici = generirajPolaznike(faker, session);
         List<Trener> treneri = generirajTrenere(faker, session);
         Trening t;
@@ -55,9 +56,7 @@ public class PocetniInsert {
            session.save(t);
            System.out.println("Kreirao trening " + t.getNaziv());
         }
-        }
-        
-        
+        }              
         session.getTransaction().commit();
     }
     
