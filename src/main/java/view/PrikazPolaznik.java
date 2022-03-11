@@ -31,7 +31,7 @@ public class PrikazPolaznik extends JLabel implements ListCellRenderer<Polaznik>
             setBackground(Color.WHITE);
             setBackground(Color.BLACK);
         }
-        setText(value.getIme() + " " + value.getPrezime());
+        setText((value.getIme()==null ? "Nepoznato" : value.getIme()) + " " + (value.getPrezime()==null ? "Nepoznato" : value.getPrezime()));
         return this;
     }
     

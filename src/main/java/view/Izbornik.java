@@ -6,6 +6,7 @@ package view;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import model.Polaznik;
 import util.EdunovaUtil;
 
 /**
@@ -92,6 +93,11 @@ private SimpleDateFormat df;
         jMenu2.setText("Programi");
 
         jMenuItem2.setText("Polaznici");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem2);
 
         jMenuItem3.setText("Treneri");
@@ -133,6 +139,10 @@ private SimpleDateFormat df;
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         dispose();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+     new PolaznikProzor().setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments

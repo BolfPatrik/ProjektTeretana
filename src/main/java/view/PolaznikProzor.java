@@ -7,7 +7,9 @@ package view;
 import controller.ObradaPolaznik;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import model.Polaznik;
+import util.EdunovaException;
 import util.EdunovaUtil;
 
 /**
@@ -90,8 +92,18 @@ private ObradaPolaznik obrada;
         });
 
         btnPromjeni.setText("Promjeni");
+        btnPromjeni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPromjeniActionPerformed(evt);
+            }
+        });
 
         btnObrisi.setText("Obriši");
+        btnObrisi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnObrisiActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -165,14 +177,66 @@ private ObradaPolaznik obrada;
        txtPrezime.setText(e.getPrezime());
        txtOib.setText(e.getOib());
        txtBrojKartice.setText(e.getBrojkartice());
-       
+        
+       if(e.getTreninzi()!=null && e.getTreninzi().size()>0){
+        btnObrisi.setEnabled(false);
+    }
+       else{
+               btnObrisi.setEnabled(true);
+            }
     
     }//GEN-LAST:event_LstEntitetiValueChanged
 
     private void btnKreirajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKreirajActionPerformed
-        // TODO add your handling code here:
+        try {
+            obrada.setEntitet(new Polaznik());
+            PreuzmiVrijednosti();
+            obrada.create();
+            ucitaj();
+        } catch (EdunovaException e) {
+            JOptionPane.showMessageDialog(getRootPane(), e.getPoruka());
+        }
     }//GEN-LAST:event_btnKreirajActionPerformed
 
+    private void btnPromjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjeniActionPerformed
+        if(obrada.getEntitet() == null){
+            JOptionPane.showMessageDialog(getRootPane(), "Prvo odabirite stavku");
+            return;
+        }
+        PreuzmiVrijednosti();
+        try {
+            obrada.update();
+            ucitaj();
+        } catch (EdunovaException e) {
+            JOptionPane.showMessageDialog(getRootPane(), e.getPoruka());
+        }
+    }//GEN-LAST:event_btnPromjeniActionPerformed
+
+    private void btnObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiActionPerformed
+        if(obrada.getEntitet() == null){
+            JOptionPane.showMessageDialog(getRootPane(), "Prvo odabirite stavku");
+            return;
+        }
+        if(JOptionPane.showConfirmDialog(getRootPane(), "Sigurno obrisati \"" + obrada.getEntitet().getPrezime() + "\"?", 
+                "Brisanje", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)==JOptionPane.NO_OPTION){
+            return;
+        }
+        
+        try {
+            obrada.delete();
+            ucitaj();
+        } catch (EdunovaException e) {
+            JOptionPane.showMessageDialog(getRootPane(), e.getPoruka());
+        }
+    }//GEN-LAST:event_btnObrisiActionPerformed
+
+    private void PreuzmiVrijednosti(){
+        var e = obrada.getEntitet();
+        e.setIme(txtIme.getText());
+        e.setPrezime(txtPrezime.getText());
+        e.setOib(txtOib.getText());
+        e.setBrojkartice(txtBrojKartice.getText());
+    }
     /**
      * @param args the command line arguments
      */
