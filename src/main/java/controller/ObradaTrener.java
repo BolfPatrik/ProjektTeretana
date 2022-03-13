@@ -35,7 +35,9 @@ public class ObradaTrener extends Obrada<Trener>{
 
     @Override
     protected void kontrolaDelete() throws EdunovaException {
-        
+        if(entitet.getTreninzi()!=null && entitet.getTreninzi().size()>0){
+        throw new EdunovaException("Polaznika ne možete obrisati jer pripada jednom ili više treninga");
+        }
     } 
    private void kontrolaOib() throws EdunovaException{
         if (!OibValidation.checkOIB(entitet.getOib())) {

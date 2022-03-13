@@ -13,9 +13,13 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Trener extends Entitet{
+    @OneToMany(mappedBy = "trener")
+    private List<Trening> treninzi;
+    
     @Column(columnDefinition = "varchar(50) NOT NULL")
     private String ime;
     @Column(columnDefinition = "varchar(50) NOT NULL")
@@ -30,6 +34,16 @@ public class Trener extends Entitet{
     private BigDecimal placa;
     @ManyToMany
     private List<Polaznik> polaznici;
+
+    public List<Trening> getTreninzi() {
+        return treninzi;
+    }
+
+    public void setTreninzi(List<Trening> treninzi) {
+        this.treninzi = treninzi;
+    }
+    
+    
 
     public String getIme() {
         return ime;
