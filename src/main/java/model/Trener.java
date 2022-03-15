@@ -17,8 +17,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Trener extends Entitet{
-    @OneToMany(mappedBy = "trener")
-    private List<Trening> treninzi;
+  
     
     @Column(columnDefinition = "varchar(50) NOT NULL")
     private String ime;
@@ -35,16 +34,7 @@ public class Trener extends Entitet{
     @ManyToMany
     private List<Polaznik> polaznici;
 
-    public List<Trening> getTreninzi() {
-        return treninzi;
-    }
-
-    public void setTreninzi(List<Trening> treninzi) {
-        this.treninzi = treninzi;
-    }
-    
-    
-
+   
     public String getIme() {
         return ime;
     }
@@ -100,6 +90,9 @@ public class Trener extends Entitet{
     public void setPolaznici(List<Polaznik> polaznici) {
         this.polaznici = polaznici;
     }
+
+   
+    
     
     
     }

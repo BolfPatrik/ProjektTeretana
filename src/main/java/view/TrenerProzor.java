@@ -5,6 +5,7 @@
 package view;
 
 import controller.ObradaTrener;
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.List;
@@ -36,11 +37,11 @@ private DecimalFormat nf;
     }
     
    private void ucitaj(){
-       DefaultListModel<Trener> p = new DefaultListModel<Trener>();
+       DefaultListModel<Trener> p = new DefaultListModel<>();
        List<Trener> entiteti = obrada.read();
        
-       for(Trener a: entiteti){
-           p.addElement(a);
+       for(Trener e: entiteti){
+           p.addElement(e);
        }
        LstEntiteti.setModel(p);
    }
@@ -196,6 +197,7 @@ private DecimalFormat nf;
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void LstEntitetiValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_LstEntitetiValueChanged
@@ -211,12 +213,7 @@ private DecimalFormat nf;
        txtIban.setText(e.getIban());
        txtPlaca.setText(e.getPlaca()!= null ? nf.format(e.getPlaca()) : "");
         
-       if(e.getTreninzi()!=null && e.getTreninzi().size()>0){
-        btnObrisi.setEnabled(false);
-    }
-       else{
-               btnObrisi.setEnabled(true);
-            }
+       
     
     }//GEN-LAST:event_LstEntitetiValueChanged
 
@@ -269,6 +266,9 @@ private DecimalFormat nf;
         e.setPrezime(txtPrezime.getText());
         e.setOib(txtOib.getText());
         e.setBrojkartice(txtBrojKartice.getText());
+        e.setIban(txtIban.getText());      
+          
+        
     }
     /**
      * @param args the command line arguments

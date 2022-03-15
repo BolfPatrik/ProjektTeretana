@@ -22,6 +22,14 @@ import org.mindrot.jbcrypt.BCrypt;
  */
 public class PocetniInsert {
     
+    public static void insertPolaznika(){
+        Session session = HibernateUtil.getSession();
+        session.beginTransaction();
+        Faker faker = new Faker();
+         List<Polaznik> polaznici = generirajPolaznike(faker, session,false);
+          session.getTransaction().commit();
+    }
+    
     public static void unosOperatera(){
         Session session = HibernateUtil.getSession();
         session.beginTransaction();
@@ -40,7 +48,7 @@ public class PocetniInsert {
         session.beginTransaction();
         Faker faker = new Faker();
         
-        List<Polaznik> polaznici = generirajPolaznike(faker, session);
+        List<Polaznik> polaznici = generirajPolaznike(faker, session,true);
         List<Trener> treneri = generirajTrenere(faker, session);
         Trening t;
         Trener tr;
@@ -60,14 +68,16 @@ public class PocetniInsert {
         session.getTransaction().commit();
     }
     
-    private static List<Polaznik> generirajPolaznike(Faker faker, Session session){
+    private static List<Polaznik> generirajPolaznike(Faker faker, Session session, boolean generirajOIB){
         List<Polaznik> polaznici = new ArrayList();
         Polaznik p;
         for(int i = 0; i<300; i++){
             p = new Polaznik();
             p.setIme(faker.name().firstName());
             p.setPrezime(faker.name().lastName());
-            p.setOib(EdunovaUtil.generirajOib());
+            if(generirajOIB){
+                p.setOib(EdunovaUtil.generirajOib());
+            }
             p.setBrojkartice("");
             session.save(p);
             polaznici.add(p);
