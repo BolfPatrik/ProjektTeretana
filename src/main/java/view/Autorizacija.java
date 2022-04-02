@@ -182,10 +182,10 @@ public class Autorizacija extends javax.swing.JFrame {
     
     
     Operater operater = obradaOperater.autoriziraj(txtEmail.getText(), new String(txtLozinka.getPassword()));
-     if(operater == null){
+     /*if(operater == null){
             JOptionPane.showMessageDialog(getRootPane(), "Neispravni email ili lozinka");
             return;
-}
+}*/
     EdunovaUtil.operater=operater;
     
     new Izbornik().setVisible(true);

@@ -4,6 +4,7 @@
         <!--
             Izvor: https://dzone.com/articles/hibernate-5-xml-configuration-example
             -->
+            <!-- create database teretana3hib character set utf8mb4  -->
 <hibernate-configuration>
     <session-factory>
         <!-- JDBC Database connection settings -->

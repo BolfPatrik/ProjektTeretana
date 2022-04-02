@@ -22,7 +22,6 @@ public class HibernateUtil {
     
     public static Session getSession(){
         if(session==null){
-            //upogoni hibernate
             try {
                 registry = new StandardServiceRegistryBuilder().configure().build();
                 MetadataSources sources = new MetadataSources(registry);

@@ -23,8 +23,8 @@ public class ObradaTrener extends Obrada<Trener>{
 
     @Override
     protected void kontrolaCreate() throws EdunovaException {
-        kontrolaOib();
-        kontrolaIBAN();
+        //kontrolaOib();
+        //kontrolaIBAN();
         
     }
 

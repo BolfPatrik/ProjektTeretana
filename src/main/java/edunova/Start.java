@@ -31,9 +31,9 @@ public class Start {
         }
     }
     
-    public static void main(String[] args) {    
-      new SplashScreen().setVisible(true);
-       //PocetniInsert.unosOperatera();
+    public static void main(String[] args) {  
+         //PocetniInsert.unosOperatera();
+      new SplashScreen().setVisible(true);   
       //PocetniInsert.insertPolaznika();
      
     }

@@ -13,15 +13,17 @@ public abstract class Entitet {
 	
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer sifra;
+	private Long sifra;
 
-    public Integer getSifra() {
+    public Long getSifra() {
         return sifra;
     }
 
-    public void setSifra(Integer sifra) {
+    public void setSifra(Long sifra) {
         this.sifra = sifra;
     }
+
+   
 
 	
         
