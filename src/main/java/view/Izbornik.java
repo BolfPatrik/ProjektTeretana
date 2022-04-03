@@ -6,7 +6,6 @@ package view;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import model.Polaznik;
 import util.EdunovaUtil;
 
 /**
@@ -27,6 +26,10 @@ private SimpleDateFormat df;
    private void postavke(){
        setTitle(EdunovaUtil.getNaslov("Izbornik"));
        File.setText(EdunovaUtil.NAZIV_APP);
+/*        if(EdunovaUtil.operater.getUloga().equals("oper")){
+            File.setVisible(false);
+        }*/
+       
        df = new SimpleDateFormat("dd MMMM. yyy. HH:mm:ss");
        Vrijeme v = new Vrijeme();
        v.start();
@@ -109,6 +112,11 @@ private SimpleDateFormat df;
         jMenu2.add(jMenuItem3);
 
         jMenuItem4.setText("Treninzi");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenuBar1.add(jMenu2);
@@ -143,6 +151,10 @@ private SimpleDateFormat df;
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
      new PolaznikProzor().setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+      new TreningProzor().setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments

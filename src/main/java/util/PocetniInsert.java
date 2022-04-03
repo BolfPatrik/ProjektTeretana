@@ -37,8 +37,9 @@ public class PocetniInsert {
         Operater o = new Operater();
         o.setIme("Stanko");
         o.setPrezime("Zec");
-        o.setEmail("nesto@gmail.com");
-        o.setLozinka(BCrypt.hashpw("12345", BCrypt.gensalt()));
+        o.setUloga("oper");
+        o.setEmail("bolfpatrik0@gmail.com");
+        o.setLozinka(BCrypt.hashpw("e", BCrypt.gensalt()));
         session.save(o);
         session.getTransaction().commit();
     }

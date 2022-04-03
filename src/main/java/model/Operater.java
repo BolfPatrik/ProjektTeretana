@@ -17,10 +17,6 @@ public class Operater extends Entitet{
     private String ime;
     @Column(columnDefinition = "varchar(50) NOT NULL")
     private String prezime;
-    @Column(columnDefinition = "varchar(11)")
-    private String oib;
-    @Column(columnDefinition = "varchar(7)")
-    private String brojkartice;
     @Column(columnDefinition = "varchar(50) NOT NULL")
     private String email;
     @Column(columnDefinition = "varchar(30) NOT NULL")
@@ -41,22 +37,6 @@ public class Operater extends Entitet{
 
     public void setPrezime(String prezime) {
         this.prezime = prezime;
-    }
-
-    public String getOib() {
-        return oib;
-    }
-
-    public void setOib(String oib) {
-        this.oib = oib;
-    }
-
-    public String getBrojkartice() {
-        return brojkartice;
-    }
-
-    public void setBrojkartice(String brojkartice) {
-        this.brojkartice = brojkartice;
     }
 
     public String getEmail() {

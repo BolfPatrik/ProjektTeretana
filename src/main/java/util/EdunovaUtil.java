@@ -25,7 +25,7 @@ public class EdunovaUtil {
         if(EdunovaUtil.operater==null){
             return EdunovaUtil.NAZIV_APP + " " + naslov;
         }
-        return EdunovaUtil.NAZIV_APP + " " + naslov + " " + EdunovaUtil.operater.getIme() + " " + 
+        return EdunovaUtil.NAZIV_APP + " " + naslov +" " + EdunovaUtil.operater.getIme() + " " + 
                 EdunovaUtil.operater.getPrezime() + " - " + EdunovaUtil.operater.getUloga();
     }
     

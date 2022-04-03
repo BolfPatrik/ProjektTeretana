@@ -32,7 +32,8 @@ public class PrikazTrener extends JLabel implements ListCellRenderer<Trener>{
             setBackground(Color.WHITE);
             setBackground(Color.BLACK);
         }
-        setText((value.getIme()==null ? "Nepoznato" : value.getIme()) + " " + (value.getPrezime()==null ? "Nepoznato" : value.getPrezime()));
+        setText((value.getIme()==null ? "Nepoznato" : value.getIme()=="" ? "XXXXXXX" : value.getIme()) + " " +
+                (value.getPrezime()==null ? "Nepoznato" : value.getPrezime()));
         return this;
     }
 

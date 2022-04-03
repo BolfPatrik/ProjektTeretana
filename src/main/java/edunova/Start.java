@@ -22,7 +22,7 @@ public class Start {
     public Start(){
     }
     
-    private void UcitavanjePodataka(){
+    /*private void UcitavanjePodataka(){
         List<Trening> treninzi = new ObradaTrening().read();
         
         for(Trening t : treninzi){
@@ -30,11 +30,11 @@ public class Start {
                     + ": " + t.getPolaznik().getIme() + t.getPolaznik().getPrezime());
         }
     }
-    
+    */
     public static void main(String[] args) {  
          //PocetniInsert.unosOperatera();
       new SplashScreen().setVisible(true);   
-      //PocetniInsert.insertPolaznika();
+      PocetniInsert.insertPolaznika();
      
     }
 }

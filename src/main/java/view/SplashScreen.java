@@ -4,9 +4,11 @@
  */
 package view;
 
+import controller.ObradaOperater;
 import javax.swing.JOptionPane;
 import org.hibernate.Session;
 import util.HibernateUtil;
+import util.PocetniInsert;
 
 /**
  *
@@ -45,7 +47,7 @@ private boolean hibernateGotov;
                 pbUcitaj.setValue(++i);
                 Thread.sleep(1000);
                 run();
-            } catch (InterruptedException e) {
+            } catch (InterruptedException ex) {
                 
             }
         }
@@ -57,13 +59,13 @@ private boolean hibernateGotov;
         @Override
         public void run() {
             Session s = HibernateUtil.getSession();
-            if(s.getMetamodel().getEntities().size()>0){
+            if(s.getMetamodel().getEntities().size()>0){                
                 hibernateGotov = true;
                 for(int t = i; t < 100; t++){
                     try {
                         pbUcitaj.setValue(++i);
                         Thread.sleep(3);
-                    } catch (InterruptedException e) {
+                    } catch (InterruptedException ex) {
                     }
                 }
                 new Autorizacija().setVisible(true);

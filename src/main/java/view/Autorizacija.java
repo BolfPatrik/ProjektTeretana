@@ -29,8 +29,8 @@ public class Autorizacija extends javax.swing.JFrame {
     
     private void postavke(){
         obradaOperater = new ObradaOperater();
-        txtEmail.setText("nesto@gmail.com");
-        txtLozinka.setText("12345");
+        txtEmail.setText("bolfpatrik0@gmail.com");
+        txtLozinka.setText("e");
         setTitle(EdunovaUtil.getNaslov("Autorizacija"));
     }
 
@@ -175,7 +175,7 @@ public class Autorizacija extends javax.swing.JFrame {
         try {
             InternetAddress emailAddr = new InternetAddress(txtEmail.getText());
             emailAddr.validate();
-        } catch (AddressException e) {
+        } catch (AddressException ex) {
             txtEmail.requestFocus();
             return;
         }

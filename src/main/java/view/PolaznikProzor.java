@@ -30,9 +30,8 @@ private ObradaPolaznik obrada;
     }
     
    private void ucitaj(){
-       DefaultListModel<Polaznik> p = new DefaultListModel<Polaznik>();
-       List<Polaznik> entiteti = obrada.read();
-       
+       DefaultListModel<Polaznik> p = new DefaultListModel<>();
+       List<Polaznik> entiteti = obrada.read();      
        for(Polaznik a: entiteti){
            p.addElement(a);
        }
@@ -63,8 +62,9 @@ private ObradaPolaznik obrada;
         btnPromjeni = new javax.swing.JButton();
         btnObrisi = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        LstEntiteti.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         LstEntiteti.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 LstEntitetiValueChanged(evt);
@@ -126,7 +126,7 @@ private ObradaPolaznik obrada;
                             .addComponent(jLabel4))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnKreiraj, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                        .addComponent(btnKreiraj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(29, 29, 29)
                         .addComponent(btnPromjeni)
                         .addGap(35, 35, 35)
@@ -194,8 +194,8 @@ private ObradaPolaznik obrada;
             PreuzmiVrijednosti();
             obrada.create();
             ucitaj();
-        } catch (EdunovaException e) {
-            JOptionPane.showMessageDialog(getRootPane(), e.getPoruka());
+        } catch (EdunovaException ex) {
+            JOptionPane.showMessageDialog(getRootPane(), ex.getPoruka());
         }
     }//GEN-LAST:event_btnKreirajActionPerformed
 
