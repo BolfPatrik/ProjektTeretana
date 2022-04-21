@@ -14,38 +14,32 @@ import util.OibValidation;
  *
  * @author patri
  */
-public class ObradaTrener extends Obrada<Trener>{
+public class ObradaTrener  extends ObradaOsoba<Trener>{
 
-    @Override
+@Override
     public List<Trener> read() {
-         return session.createQuery("from Trener").list();
+        return session.createQuery("from Trener").list();
     }
-
-    @Override
+     @Override
     protected void kontrolaCreate() throws EdunovaException {
-        //kontrolaOib();
-        //kontrolaIBAN();
-        
+        super.kontrolaCreate();
+        kontrolaIBAN();
+        kontrolaNoviIban();
     }
 
     @Override
     protected void kontrolaUpdate() throws EdunovaException {
-        
+        super.kontrolaUpdate(); 
+        kontrolaPromjenaIban();
     }
+    
+    
 
-    @Override
-    protected void kontrolaDelete() throws EdunovaException {
-        
-    } 
-   private void kontrolaOib() throws EdunovaException{
-        if (!OibValidation.checkOIB(entitet.getOib())) {
-            throw new EdunovaException("OIB nije formalno ispravan");
-        }
-    }  
-private void kontrolaIBAN() throws EdunovaException {
+    private void kontrolaIBAN() throws EdunovaException {
         if (entitet.getIban() == null) {
             throw new EdunovaException("Obavezno IBAN");
         }
+
         try {
             IBAN iban = IBAN.valueOf(entitet.getIban());
             if (!iban.isSEPA()) {
@@ -54,6 +48,34 @@ private void kontrolaIBAN() throws EdunovaException {
         } catch (Exception e) {
             throw new EdunovaException("IBAN nije ispravan");
         }
-}
+        
+    }
     
+    private void kontrolaNoviIban()throws EdunovaException{
+         List<Trener> lista = session.createQuery("from Trener e "
+                + "where e.iban=:iban")
+                .setParameter("iban", entitet.getIban()).list();
+        
+        if(lista!=null && lista.size()>0){
+            throw new EdunovaException("IBAN postoji u sustavu, dodijeljen " + lista.get(0).getPrezime());
+        }
+    }
+    
+    private void kontrolaPromjenaIban()throws EdunovaException{
+         List<Trener> lista = session.createQuery("from Trener e "
+                + "where e.iban=:iban and e.sifra!=:id")
+                .setParameter("iban", entitet.getIban())
+                 .setParameter("id", entitet.getSifra()).list();
+        
+        if(lista!=null && lista.size()>0){
+            throw new EdunovaException("IBAN postoji u sustavu, dodijeljen " + lista.get(0).getPrezime());
+        }
+    }
+
+    /*@Override
+    protected void kontrolaDelete() throws EdunovaException {
+        if(entitet.getGrupe()!=null && entitet.getGrupe().size()>0){
+            throw new EdunovaException("Predavača ne možete obrisati jer predaje na jednoj ili više grupa");
+        }
+    }*/
 }

@@ -20,18 +20,29 @@ public class ObradaTrening extends Obrada<Trening>{
 
     @Override
     public List<Trening> read() {
-        return session.createQuery("from Trening").list();
+       return session.createQuery("from Trening").list();
     }
 
     @Override
     protected void kontrolaCreate() throws EdunovaException {
+        kontrolaTrener();
+       
     }
 
     @Override
     protected void kontrolaUpdate() throws EdunovaException {
+     kontrolaCreate();
     }
 
     @Override
     protected void kontrolaDelete() throws EdunovaException {
+      /* if(entitet.getPolaznici()!=null && !entitet.getPolaznici().isEmpty()){
+            throw new EdunovaException("Ne možete obrisati grupu dok su na njoj polaznici");
+        }*/
+    }
+   private void kontrolaTrener() throws EdunovaException {
+        if (entitet.getTrener() == null || entitet.getTrener().getSifra().equals(Long.valueOf(0))) {
+            throw new EdunovaException("Obavezno odabir trenera");
+        }
     }
 }

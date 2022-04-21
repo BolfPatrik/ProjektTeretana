@@ -13,33 +13,38 @@ import util.OibValidation;
  *
  * @author patri
  */
-public class ObradaPolaznik extends Obrada<Polaznik>{
+public class ObradaPolaznik extends ObradaOsoba<Polaznik> {
 
     @Override
     public List<Polaznik> read() {
-      return session.createQuery("from Polaznik").list();
+        return session.createQuery("from Polaznik").list();
     }
-
-    @Override
-    protected void kontrolaCreate() throws EdunovaException {
-    kontrolaOib();
+     public List<Polaznik> read(String uvjet) {
+        return session.createQuery("from Polaznik p "
+                + " where concat(p.ime,' ',p.prezime,' ',ifnull(p.oib,'')) "
+                + " like :uvjet order by p.prezime, p.ime")
+                .setParameter("uvjet","%" + uvjet + "%")
+                .setMaxResults(50)
+                .list();
     }
-
-    @Override
-    protected void kontrolaUpdate() throws EdunovaException {
-       
-    }
-
-    @Override
-    protected void kontrolaDelete() throws EdunovaException {
-        if(entitet.getTreninzi()!=null && entitet.getTreninzi().size()>0){
-        throw new EdunovaException("Polaznika ne možete obrisati jer pripada jednom ili više treninga");
-    }
+      public List<Polaznik> readPocetakPrezime(String uvjet) {
+        return session.createQuery("from Polaznik p "
+                + " where p.prezime "
+                + " like :uvjet order by p.prezime, p.ime")
+                .setParameter("uvjet", uvjet + "%")
+                .setMaxResults(50)
+                .list();
+      }
       
+        @Override
+    protected void kontrolaCreate() throws EdunovaException {
+        super.kontrolaCreate(); 
     }
-    private void kontrolaOib() throws EdunovaException{
-        if (!OibValidation.checkOIB(entitet.getOib())) {
-            throw new EdunovaException("OIB nije formalno ispravan");
+    
+    // @Override
+    /*protected void kontrolaDelete() throws EdunovaException {
+        if(entitet.getT()!=null && entitet.getGrupe().size()>0){
+            throw new EdunovaException("Polaznik ne možete obrisati jer pohađa jednu ili više grupa");
         }
-    }  
+    }*/
 }

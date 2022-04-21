@@ -30,13 +30,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="txtIme" max="32767" attributes="0"/>
                   <Component id="txtPrezime" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtOib" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtBrojKartice" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jTextField1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="txtOIB" alignment="0" max="32767" attributes="0"/>
+                  <Component id="txtKartica" alignment="0" max="32767" attributes="0"/>
+                  <Component id="txtIBAN" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jTextField2" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="btnKreiraj" pref="79" max="32767" attributes="0"/>
+                              <Component id="btnKreiraj" pref="189" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                               <Component id="btnPromjeni" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
@@ -52,14 +53,12 @@
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
+                          <Component id="txtPlaca" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtEmail" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="txtPlaca" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Component id="jTextField2" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -81,23 +80,27 @@
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtPrezime" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="txtEmail" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtOib" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtOIB" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtBrojKartice" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtKartica" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtIban" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="txtIBAN" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                       <Component id="txtPlaca" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jTextField2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="19" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnKreiraj" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnPromjeni" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -118,14 +121,14 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JList" name="LstEntiteti">
+        <Component class="javax.swing.JList" name="lstEntiteti">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
               <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="LstEntitetiValueChanged"/>
+            <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="lstEntitetiValueChanged"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Trener&gt;"/>
@@ -152,7 +155,7 @@
         <Property name="text" type="java.lang.String" value="Oib"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtOib">
+    <Component class="javax.swing.JTextField" name="txtOIB">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="2"/>
       </Properties>
@@ -162,7 +165,7 @@
         <Property name="text" type="java.lang.String" value="Broj kartice"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtBrojKartice">
+    <Component class="javax.swing.JTextField" name="txtKartica">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="2"/>
       </Properties>
@@ -196,7 +199,7 @@
         <Property name="text" type="java.lang.String" value="Iban"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="txtIBAN">
     </Component>
     <Component class="javax.swing.JLabel" name="txtPlaca">
       <Properties>
@@ -204,6 +207,13 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField2">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel5">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Email"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtEmail">
     </Component>
   </SubComponents>
 </Form>

@@ -19,8 +19,8 @@ import us.codecraft.xsoup.Xsoup;
 public class EdunovaUtil {
     
     public static Operater operater;
-    public static final String NAZIV_APP = "Teretana app";
-    
+    public static final String NAZIV_APP="Edunova app";
+
     public static String getNaslov(String naslov){
         if(EdunovaUtil.operater==null){
             return EdunovaUtil.NAZIV_APP + " " + naslov;
@@ -29,7 +29,8 @@ public class EdunovaUtil {
                 EdunovaUtil.operater.getPrezime() + " - " + EdunovaUtil.operater.getUloga();
     }
     
-    public static String generirajOib(){
+    public static String generirajOib() {
+
         try {
             URL url = new URL("http://oib.itcentrala.com/oib-generator/");
             BufferedReader in = new BufferedReader(
@@ -46,6 +47,12 @@ public class EdunovaUtil {
         } catch (Exception e) {
         }
         return "";
-        
     }
+   
+    public static String generirajBrojKartice(){    
+        int broj = ((int)(Math.random() * 9000000)+1000000);
+        String kartica = "";
+        kartica = " " + broj;
+        return kartica;
+    }   
 }

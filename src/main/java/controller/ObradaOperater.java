@@ -14,40 +14,28 @@ import util.EdunovaException;
  *
  * @author patri
  */
-public class ObradaOperater extends Obrada<Operater>{
-     @Override
+public class ObradaOperater extends ObradaOsoba<Operater>{
+
+    @Override
     public List<Operater> read() {
-        return session.createQuery("from Operater").list();       
+         return session.createQuery("from Operater").list();
     }
-     @Override
-    protected void kontrolaCreate() throws EdunovaException {
-       
-    }
-
-    @Override
-    protected void kontrolaUpdate() throws EdunovaException {
+     public Operater autoriziraj(String email, String lozinka){
+        Operater operater=null;
         
-    }
-
-    @Override
-    protected void kontrolaDelete() throws EdunovaException {
+        try {
+            operater = (Operater)session.createQuery("from Operater where email=:email")
+                .setParameter("email", email).getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
         
+        if(operater==null){
+            return null;
+        }
+        
+        
+        return BCrypt.checkpw(lozinka, operater.getLozinka()) ?  operater : null;
     }
-
-   public Operater autoriziraj(String email, String lozinka){
-       Operater operater = null;
-       try {
-           operater = (Operater)session.createQuery("from Operater where email=:email")
-                   .setParameter("email", email).getSingleResult();
-       } catch (NoResultException e) {
-           return null;
-       }
-       if(operater == null){
-           return null;
-       }
-       return BCrypt.checkpw(lozinka, operater.getLozinka()) ? operater : null;
-   }
-
-   
-    
 }
+

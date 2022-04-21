@@ -25,24 +25,23 @@ private SimpleDateFormat df;
     
    private void postavke(){
        setTitle(EdunovaUtil.getNaslov("Izbornik"));
-       File.setText(EdunovaUtil.NAZIV_APP);
-/*        if(EdunovaUtil.operater.getUloga().equals("oper")){
-            File.setVisible(false);
-        }*/
-       
-       df = new SimpleDateFormat("dd MMMM. yyy. HH:mm:ss");
+       File.setText(EdunovaUtil.NAZIV_APP);        
+      df = new SimpleDateFormat("dd MMMM. yyy. HH:mm:ss");
        Vrijeme v = new Vrijeme();
        v.start();
    }
    
    private class Vrijeme extends Thread{
+    @Override  
     public void run(){
         lblVrijeme.setText(df.format(new Date()));
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-        }
-        run();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                
+               
+            }
+            run();
     }
 }
 
@@ -60,6 +59,7 @@ private SimpleDateFormat df;
         jMenu4 = new javax.swing.JMenu();
         jToolBar1 = new javax.swing.JToolBar();
         lblVrijeme = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         File = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -80,6 +80,17 @@ private SimpleDateFormat df;
 
         lblVrijeme.setText("jLabel1");
         jToolBar1.add(lblVrijeme);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 235, Short.MAX_VALUE)
+        );
 
         File.setText("File");
 
@@ -128,11 +139,17 @@ private SimpleDateFormat df;
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jToolBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 255, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -172,6 +189,7 @@ private SimpleDateFormat df;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel lblVrijeme;
     // End of variables declaration//GEN-END:variables

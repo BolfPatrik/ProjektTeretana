@@ -29,22 +29,21 @@ private DecimalFormat nf;
     public TrenerProzor() {
         initComponents();
         obrada = new ObradaTrener();
-        DecimalFormatSymbols symbols = new DecimalFormatSymbols(new Locale("hr", "HR"));
-        nf = new DecimalFormat("###,###.00", symbols);
-        LstEntiteti.setCellRenderer(new PrikazTrener());
+        lstEntiteti.setCellRenderer(new PrikazOsoba());
         setTitle(EdunovaUtil.getNaslov("Treneri"));
         ucitaj();
     }
     
-   private void ucitaj(){
-       DefaultListModel<Trener> p = new DefaultListModel<>();
-       List<Trener> entiteti = obrada.read();
-       
-       for(Trener e: entiteti){
-           p.addElement(e);
-       }
-       LstEntiteti.setModel(p);
-   }
+  private void ucitaj() {
+        DefaultListModel<Trener> m = new DefaultListModel<>();
+        List<Trener> entiteti = obrada.read();
+
+        for (Trener s : entiteti) {
+            m.addElement(s);
+        }
+        // implementirati ćemo custom renderer https://www.codejava.net/java-se/swing/jlist-custom-renderer-example
+        lstEntiteti.setModel(m);
+    }
     
 
     /**
@@ -57,31 +56,33 @@ private DecimalFormat nf;
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        LstEntiteti = new javax.swing.JList<>();
+        lstEntiteti = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         txtIme = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtPrezime = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtOib = new javax.swing.JTextField();
+        txtOIB = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtBrojKartice = new javax.swing.JTextField();
+        txtKartica = new javax.swing.JTextField();
         btnKreiraj = new javax.swing.JButton();
         btnPromjeni = new javax.swing.JButton();
         btnObrisi = new javax.swing.JButton();
         txtIban = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtIBAN = new javax.swing.JTextField();
         txtPlaca = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        LstEntiteti.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+        lstEntiteti.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                LstEntitetiValueChanged(evt);
+                lstEntitetiValueChanged(evt);
             }
         });
-        jScrollPane1.setViewportView(LstEntiteti);
+        jScrollPane1.setViewportView(lstEntiteti);
 
         jLabel1.setText("Ime");
 
@@ -89,11 +90,11 @@ private DecimalFormat nf;
 
         jLabel3.setText("Oib");
 
-        txtOib.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtOIB.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
         jLabel4.setText("Broj kartice");
 
-        txtBrojKartice.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtKartica.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
         btnKreiraj.setText("Kreiraj");
         btnKreiraj.addActionListener(new java.awt.event.ActionListener() {
@@ -120,6 +121,8 @@ private DecimalFormat nf;
 
         txtPlaca.setText("Plaća");
 
+        jLabel5.setText("Email");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -131,13 +134,14 @@ private DecimalFormat nf;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtIme)
                     .addComponent(txtPrezime)
-                    .addComponent(txtOib)
-                    .addComponent(txtBrojKartice)
-                    .addComponent(jTextField1)
+                    .addComponent(txtOIB)
+                    .addComponent(txtKartica)
+                    .addComponent(txtIBAN)
+                    .addComponent(jTextField2)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnKreiraj, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                                .addComponent(btnKreiraj, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
                                 .addGap(31, 31, 31)
                                 .addComponent(btnPromjeni)
                                 .addGap(33, 33, 33)
@@ -149,12 +153,11 @@ private DecimalFormat nf;
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel4)
                                     .addComponent(txtIban))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtPlaca)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jTextField2)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(txtPlaca)
+                            .addComponent(jLabel5)
+                            .addComponent(txtEmail))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,23 +175,27 @@ private DecimalFormat nf;
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtOib, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtOIB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtBrojKartice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtKartica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtIban)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtIBAN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
                         .addComponent(txtPlaca)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnKreiraj)
                             .addComponent(btnPromjeni)
@@ -200,22 +207,25 @@ private DecimalFormat nf;
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void LstEntitetiValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_LstEntitetiValueChanged
-        if(evt.getValueIsAdjusting() || LstEntiteti.getSelectedValue()==null){
+    private void lstEntitetiValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstEntitetiValueChanged
+         if (evt.getValueIsAdjusting() || lstEntiteti.getSelectedValue() == null) {
             return;
         }
-       obrada.setEntitet(LstEntiteti.getSelectedValue());
-       var e = obrada.getEntitet();
-       txtIme.setText(e.getIme());
-       txtPrezime.setText(e.getPrezime());
-       txtOib.setText(e.getOib());
-       txtBrojKartice.setText(e.getBrojkartice());
-       txtIban.setText(e.getIban());
-       txtPlaca.setText(e.getPlaca()!= null ? nf.format(e.getPlaca()) : "");
+        obrada.setEntitet(lstEntiteti.getSelectedValue());
+        var e = obrada.getEntitet();
+        txtIme.setText(e.getIme());
+        txtPrezime.setText(e.getPrezime());
+        txtEmail.setText(e.getEmail());
+        txtOIB.setText(e.getOib());
+        txtKartica.setText(e.getBrojkartice());
+        txtIBAN.setText(e.getIban());
         
-       
-    
-    }//GEN-LAST:event_LstEntitetiValueChanged
+        if(e.getTreninzi()!=null && e.getTreninzi().size()>0){
+            btnObrisi.setEnabled(false);
+        }else{
+            btnObrisi.setEnabled(true);
+        }            
+    }//GEN-LAST:event_lstEntitetiValueChanged
 
     private void btnKreirajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKreirajActionPerformed
         try {
@@ -264,9 +274,10 @@ private DecimalFormat nf;
         var e = obrada.getEntitet();
         e.setIme(txtIme.getText());
         e.setPrezime(txtPrezime.getText());
-        e.setOib(txtOib.getText());
-        e.setBrojkartice(txtBrojKartice.getText());
-        e.setIban(txtIban.getText());      
+        e.setEmail(txtEmail.getText());
+        e.setOib(txtOIB.getText());
+        e.setBrojkartice(txtKartica.getText());
+        e.setIban(txtIBAN.getText());
           
         
     }
@@ -276,7 +287,6 @@ private DecimalFormat nf;
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<Trener> LstEntiteti;
     private javax.swing.JButton btnKreiraj;
     private javax.swing.JButton btnObrisi;
     private javax.swing.JButton btnPromjeni;
@@ -284,13 +294,16 @@ private DecimalFormat nf;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField txtBrojKartice;
+    private javax.swing.JList<Trener> lstEntiteti;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtIBAN;
     private javax.swing.JLabel txtIban;
     private javax.swing.JTextField txtIme;
-    private javax.swing.JTextField txtOib;
+    private javax.swing.JTextField txtKartica;
+    private javax.swing.JTextField txtOIB;
     private javax.swing.JLabel txtPlaca;
     private javax.swing.JTextField txtPrezime;
     // End of variables declaration//GEN-END:variables

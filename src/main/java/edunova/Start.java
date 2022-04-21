@@ -31,10 +31,8 @@ public class Start {
         }
     }
     */
-    public static void main(String[] args) {  
-         //PocetniInsert.unosOperatera();
-      new SplashScreen().setVisible(true);   
-      PocetniInsert.insertPolaznika();
-     
+     public static void main(String[] args) {  
+     //PocetniInsert.inicijalniPodaci();
+     new SplashScreen().setVisible(true);             
     }
 }

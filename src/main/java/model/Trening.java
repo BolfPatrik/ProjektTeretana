@@ -9,6 +9,7 @@ package model;
  * @author patri
  */
 import java.math.BigDecimal;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -17,44 +18,50 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Trening extends Entitet{
-        @Column(columnDefinition = "varchar(50) NOT NULL")
-	private String naziv;
-        @Column(columnDefinition = "varchar(50)")
-	private String vrijemepocetka;
-        @Column(columnDefinition = "varchar(50)")
-	private String vrijemekraja;
-        @Column(columnDefinition = "decimal(18,2)")
-	private BigDecimal cijena;
-        @ManyToOne
-        private Polaznik polaznik;
-        
-        @ManyToOne
-        private Trener Trener;
+    @Column(columnDefinition = "varchar(50) NOT NULL")
+    private String naziv;
+    @Column(columnDefinition = "datetime")
+    private Date datumpocetka;
+     @Column(columnDefinition = "decimal(18,2) ")
+    private BigDecimal cijena;
+    
+    @ManyToOne
+    private Trener trener;
+    
+    @ManyToOne
+    private Polaznik polaznik;
 
-	public String getNaziv() {
-		return naziv;
-	}
-	public void setNaziv(String naziv) {
-		this.naziv = naziv;
-	}
-	public String getVrijemepocetka() {
-		return vrijemepocetka;
-	}
-	public void setVrijemepocetka(String vrijemepocetka) {
-		this.vrijemepocetka = vrijemepocetka;
-	}
-	public String getVrijemekraja() {
-		return vrijemekraja;
-	}
-	public void setVrijemekraja(String vrijemekraja) {
-		this.vrijemekraja = vrijemekraja;
-	}
-	public BigDecimal getCijena() {
-		return cijena;
-	}
-	public void setCijena(BigDecimal cijena) {
-		this.cijena = cijena;
-	}
+    public String getNaziv() {
+        return naziv;
+    }
+
+    public void setNaziv(String naziv) {
+        this.naziv = naziv;
+    }
+
+    public Date getDatumpocetka() {
+        return datumpocetka;
+    }
+
+    public void setDatumpocetka(Date datumpocetka) {
+        this.datumpocetka = datumpocetka;
+    }
+
+    public BigDecimal getCijena() {
+        return cijena;
+    }
+
+    public void setCijena(BigDecimal cijena) {
+        this.cijena = cijena;
+    }
+
+    public Trener getTrener() {
+        return trener;
+    }
+
+    public void setTrener(Trener trener) {
+        this.trener = trener;
+    }
 
     public Polaznik getPolaznik() {
         return polaznik;
@@ -62,18 +69,11 @@ public class Trening extends Entitet{
 
     public void setPolaznik(Polaznik polaznik) {
         this.polaznik = polaznik;
-    }
-
-    public Trener getTrener() {
-        return Trener;
-    }
-
-    public void setTrener(Trener Trener) {
-        this.Trener = Trener;
-    }
-	
-	
-	
-	
+    }   
+  
+    @Override
+    public String toString() {
+        return naziv;
+    }		
 	
 }
